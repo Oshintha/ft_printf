@@ -6,7 +6,7 @@
 /*   By: aoshinth <aoshinth@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:25:18 by aoshinth          #+#    #+#             */
-/*   Updated: 2024/05/08 09:29:56 by aoshinth         ###   ########.fr       */
+/*   Updated: 2024/05/09 18:10:45 by aoshinth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,9 @@ int	ft_printf(const char *input, ...)
 				i += print_char('%');
 		}
 		else
-			i = i + print_char(*input);
+			i += print_char(*input);
 		input++;
 	}
 	va_end(args);
 	return (i);
 }
-

@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_char.c                                       :+:      :+:    :+:   */
+/*   print_string.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoshinth <aoshinth@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/08 17:04:10 by aoshinth          #+#    #+#             */
-/*   Updated: 2024/05/09 17:39:17 by aoshinth         ###   ########.fr       */
+/*   Created: 2024/05/09 11:53:38 by aoshinth          #+#    #+#             */
+/*   Updated: 2024/05/09 17:39:26 by aoshinth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_char(char c)
+int	print_string(char *s)
 {
-	ft_putchar_fd(c, 1);
-	return (1);
+	unsigned int	i;
+
+	i = 0;
+	if (!s)
+	{
+		ft_putstr_fd("(null)", 1);
+		return (6);
+	}
+	while (s[i])
+		i++;
+	ft_putstr_fd(s, 1);
+	return (i);
 }

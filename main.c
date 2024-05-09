@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_char.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoshinth <aoshinth@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/08 17:04:10 by aoshinth          #+#    #+#             */
-/*   Updated: 2024/05/09 17:39:17 by aoshinth         ###   ########.fr       */
+/*   Created: 2024/05/09 14:46:05 by aoshinth          #+#    #+#             */
+/*   Updated: 2024/05/09 17:39:13 by aoshinth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/* #include <stdio.h>
 #include "ft_printf.h"
 
-int	print_char(char c)
-{
-	ft_putchar_fd(c, 1);
-	return (1);
-}
+int ft_printf(const char *input, ...);
+
+int main() {
+    char a = 2;
+    ft_printf("hello %c", a);
+    printf("\n%c\n", a);
+    return 0;
+} */
