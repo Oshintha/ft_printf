@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoshinth <aoshinth@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/08 09:27:23 by aoshinth          #+#    #+#             */
-/*   Updated: 2024/05/14 19:00:59 by aoshinth         ###   ########.fr       */
+/*   Created: 2024/05/09 14:46:05 by aoshinth          #+#    #+#             */
+/*   Updated: 2024/05/14 14:28:15 by aoshinth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+/* #include <stdio.h>
+#include "ft_printf.h"
 
-# include <stdarg.h>
-# include "./libft/libft.h"
+int ft_printf(const char *input, ...);
 
-int		ft_printf(const char *input, ...);
-int		print_char(char c);
-int		print_string(char *s);
-int		print_pointer(size_t ptr);
-int		print_int(int n);
-int		print_unsigned(unsigned int nb);
-int		print_hex(unsigned int value, char type);
-
-#endif
+int main() {
+    char a = 2;
+    ft_printf("hello %c", a);
+    printf("\n%c\n", a);
+    return 0;
+} */
