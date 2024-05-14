@@ -6,11 +6,40 @@
 /*   By: aoshinth <aoshinth@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 14:02:49 by aoshinth          #+#    #+#             */
-/*   Updated: 2024/05/09 17:39:22 by aoshinth         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:07:12 by aoshinth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static int	ft_putnbr(int n, int fd)
+{
+	char	result;
+
+	if (n == -2147483648)
+	{
+		if (write (fd, "-2147483648", 11) == -1)
+			return (-1);
+	}
+	else
+	{
+		if (n < 0)
+		{
+			if (write (fd, "-", 1) == -1)
+				return (-1);
+			n = -n;
+		}
+		if (n >= 10)
+		{
+			if (ft_putnbr(n / 10, fd) == -1)
+				return (-1);
+		}
+		result = (n % 10) + '0';
+		if (write (fd, &result, 1) == -1)
+			return (-1);
+	}
+	return (0);
+}
 
 int	print_int(int n)
 {
@@ -29,7 +58,8 @@ int	print_int(int n)
 		nb = nb / 10;
 		i++;
 	}
-	ft_putnbr_fd(n, 1);
+	if (ft_putnbr(n, 1) == -1)
+		return (-1);
 	if (n == -2147483648)
 		return (11);
 	return (i);

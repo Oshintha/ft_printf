@@ -6,7 +6,7 @@
 /*   By: aoshinth <aoshinth@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:53:38 by aoshinth          #+#    #+#             */
-/*   Updated: 2024/05/09 17:39:26 by aoshinth         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:29:31 by aoshinth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,15 @@ int	print_string(char *s)
 	i = 0;
 	if (!s)
 	{
-		ft_putstr_fd("(null)", 1);
+		if (write (1, "(null)", 6) == -1)
+			return (-1);
 		return (6);
 	}
 	while (s[i])
+	{
+		if (write (1, &s[i], 1) == -1)
+			return (-1);
 		i++;
-	ft_putstr_fd(s, 1);
+	}
 	return (i);
 }

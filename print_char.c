@@ -6,7 +6,7 @@
 /*   By: aoshinth <aoshinth@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:04:10 by aoshinth          #+#    #+#             */
-/*   Updated: 2024/05/09 17:39:17 by aoshinth         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:57:41 by aoshinth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	print_char(char c)
 {
-	ft_putchar_fd(c, 1);
+	if (write (1, &c, 1) == -1)
+		return (-1);
 	return (1);
 }

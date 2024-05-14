@@ -6,57 +6,59 @@
 /*   By: aoshinth <aoshinth@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 12:02:55 by aoshinth          #+#    #+#             */
-/*   Updated: 2024/05/09 17:39:24 by aoshinth         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:58:36 by aoshinth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char	*create_string(unsigned long value, int *strlen)
+int	ptr_len(size_t n)
 {
-	int				i;
-	unsigned long	temp;
-	char			*str;
+	int	len;
 
-	i = 0;
-	temp = value;
-	while (temp != 0)
+	len = 0;
+	while (n != 0)
 	{
-		temp = temp / 16;
-		i++;
+		n = n / 16;
+		len++;
 	}
-	str = calloc(i + 1, sizeof(char));
-	if (!str)
-		return (0);
-	*strlen = i - 1;
-	return (str);
+	return (len);
 }
 
-int	print_pointer(unsigned long value, int asc)
+int	put_ptr(uintptr_t n)
 {
-	unsigned long	temp;
-	char			*printout;
-	int				i;
-	int				*ptr;
-
-	ptr = &i;
-	temp = value;
-	printout = create_string(value, ptr);
-	if (!printout)
-		return (0);
-	while (temp != 0 && i-- >= 0)
+	if (n >= 16)
 	{
-		if ((temp % 16) < 10)
-			printout[i + 1] = (temp % 16) + 48;
-		else
-			printout[i + 1] = (temp % 16) + asc;
-		temp = temp / 16;
+		if (put_ptr(n / 16) == -1)
+			return (-1);
+		put_ptr(n % 16);
 	}
-	i = ft_strlen(printout);
-	i = i + print_string("0x");
-	ft_putstr_fd(printout, 1);
-	free(printout);
-	if (value == 0)
-		i += print_char('0');
-	return (i);
+	else
+	{
+		if (n <= 9)
+			return (print_char(n + '0'));
+		else
+		{
+			return (print_char((n % 16) - 10 + 'a'));
+		}
+	}
+	return (0);
+}
+
+int	print_pointer(size_t ptr)
+{
+	int	len;
+
+	if (write(1, "0x", 2) == -1)
+		return (-1);
+	len = 2;
+	if (ptr == 0)
+		len += print_char('0');
+	else
+	{
+		if (put_ptr(ptr) == -1)
+			return (-1);
+		len += ptr_len(ptr);
+	}
+	return (len);
 }

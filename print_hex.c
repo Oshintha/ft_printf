@@ -6,53 +6,55 @@
 /*   By: aoshinth <aoshinth@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 14:36:34 by aoshinth          #+#    #+#             */
-/*   Updated: 2024/05/09 17:39:20 by aoshinth         ###   ########.fr       */
+/*   Updated: 2024/05/14 18:33:32 by aoshinth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char	*create_string(unsigned int value, int *strlen)
+static int	check_len(unsigned int n)
 {
-	int				i;
-	unsigned int	temp;
-	char			*str;
+	int	len;
 
-	i = 0;
-	temp = value;
-	while (temp != 0)
+	len = 0;
+	while (n != 0)
 	{
-		temp = temp / 16;
-		i++;
+		n = n / 16;
+		len++;
 	}
-	str = calloc(i + 1, sizeof(char));
-	*strlen = i - 1;
-	return (str);
+	return (len);
+}
+
+static int	puthex(unsigned int n, char format)
+{
+	if (n >= 16)
+	{
+		if (print_hex(n / 16, format) == -1)
+			return (-1);
+		print_hex(n % 16, format);
+	}
+	else
+	{
+		if (n <= 9)
+			return (print_char(n + '0'));
+		else
+		{
+			if (format == 'x')
+				return (print_char(n - 10 + 'a'));
+			if (format == 'X')
+				return (print_char(n - 10 + 'A'));
+			else
+				return (-1);
+		}
+	}
+	return (0);
 }
 
 int	print_hex(unsigned int value, int asc)
 {
-	unsigned int	temp;
-	char			*printout;
-	int				i;
-
-	temp = value;
-	printout = create_string(value, &i);
-	if (!printout)
-		return (0);
-	while (temp != 0)
-	{
-		if ((temp % 16) < 10)
-			printout[i] = (temp % 16) + 48;
-		else
-			printout[i] = (temp % 16) + asc;
-		temp = temp / 16;
-		i--;
-	}
-	ft_putstr_fd(printout, 1);
-	i = ft_strlen(printout);
-	free(printout);
 	if (value == 0)
-		i += print_char('0');
-	return (i);
+		return (print_char('0'));
+	if (puthex(value, asc) == -1)
+		return (-1);
+	return (check_len(value));
 }

@@ -6,34 +6,42 @@
 /*   By: aoshinth <aoshinth@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 17:39:58 by aoshinth          #+#    #+#             */
-/*   Updated: 2024/05/09 17:49:54 by aoshinth         ###   ########.fr       */
+/*   Updated: 2024/05/14 18:22:47 by aoshinth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	printout(unsigned int nb)
-{
-	if (nb > 9)
-		print_unsigned(nb / 10);
-	if (nb <= 9)
-	{
-		ft_putchar_fd(nb + 48, 1);
-		return ;
-	}
-	ft_putchar_fd((nb % 10) + 48, 1);
-}
-
-int	print_unsigned(unsigned int nb)
+static size_t	check_size(unsigned int n)
 {
 	unsigned int	i;
+	unsigned int	count;
 
-	printout(nb);
-	i = 1;
-	while (nb > 9)
+	i = n;
+	count = 0;
+	while (i >= 10)
 	{
-		nb = nb / 10;
-		i++;
+		count++;
+		i = i / 10;
 	}
-	return (i);
+	return (count + 1);
+}
+
+int	print_unsigned(unsigned int n)
+{
+	char	res;
+	int		size;
+
+	size = check_size(n);
+	if (n >= 10)
+	{
+		res = n % 10 + '0';
+		if (print_unsigned(n / 10) == -1)
+			return (-1);
+	}
+	else
+		res = n + '0';
+	if (print_char(res) == -1)
+		return (-1);
+	return (size);
 }
