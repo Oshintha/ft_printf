@@ -1,10 +1,5 @@
 # ft_printf
 
-<p align="center">
-	<img src="https://github.com/user-attachments/assets/99e8cf93-49d2-45c8-9fe1-55614348093b"><img width="144" src="https://github.com/user-attachments/assets/403b21de-55d0-46da-97fc-16c0a9b19f17">
-
-</p>
-
 The ft_printf function is a custom implementation of the standard printf function found in the C standard library. This function is designed to replicate the behavior of printf with a specific set of formatting options, allowing you to print formatted output to the standard output.
 
 ## Prototype
