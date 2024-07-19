@@ -26,12 +26,6 @@ Your ft_printf function will be compared against the original printf function to
 Command Restrictions: You must use the ar command to create your library. The use of the libtool command is forbidden.
 Library Creation: The library libftprintf.a should be created at the root of your repository.
 
-## Example Usage
-Here's an example of how you might use ft_printf in a simple program:
-
-![image](https://github.com/user-attachments/assets/b60a79f6-572d-4b55-9ef6-62c17692ab9f)
-
-
 ## Integration
 To integrate ft_printf into your project, follow these steps:
 
